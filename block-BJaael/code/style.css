@@ -33,3 +33,13 @@ img {
   max-width: 100%;
   height: auto;
 }
+.flex {
+  display: flex;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+h1 {
+  text-align: center;
+  margin: 16px 0;
+}
