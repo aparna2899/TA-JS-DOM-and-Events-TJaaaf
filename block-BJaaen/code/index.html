@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    /> -->
+    <script
+      src="https://kit.fontawesome.com/269bfe6ad5.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Rock Paper and Scissors</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Rock Paper Scissors</h1>
+      <div class="wrapper">
+        <div class="player">
+          <h2 class="player-selected">You</h2>
+          <figure class="player-icons">
+            <i
+              class="fa fa-hand-rock-o"
+              aria-hidden="true"
+              data-text="rock"
+            ></i>
+            <i
+              class="fa fa-hand-paper-o"
+              aria-hidden="true"
+              data-text="paper"
+            ></i>
+            <i
+              class="fa fa-hand-scissors-o"
+              aria-hidden="true"
+              data-text="scissor"
+            ></i>
+          </figure>
+        </div>
+        <div class="computer">
+          <h2 class="computer-selected">Computer</h2>
+          <figure>
+            <i
+              class="fa fa-hand-rock-o computer-icon"
+              aria-hidden="true"
+              data-text="rock"
+            ></i>
+            <i
+              class="fa fa-hand-paper-o computer-icon"
+              aria-hidden="true"
+              data-text="paper"
+            ></i>
+            <i
+              class="fa fa-hand-scissors-o computer-icon"
+              aria-hidden="true"
+              data-text="scissor"
+            ></i>
+          </figure>
+        </div>
+        <i class="fas fa-sync-alt restart" data-text="restart"></i>
+        <div class="result"></div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
