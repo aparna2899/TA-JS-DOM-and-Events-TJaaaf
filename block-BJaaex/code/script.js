@@ -34,6 +34,8 @@ let iconsArray = [
     
 ];
 
+function main(){
+
 let cardsArray = iconsArray.concat(iconsArray);
 
 cardsArray.sort(() => 0.5 - Math.random());
@@ -44,62 +46,60 @@ section.classList.add('flex');
 game.append(section);
 
 
+let span = document.querySelector('span');
+
 cardsArray.forEach((card,index) => {
     let div = document.createElement('div');
     div.classList.add('card');
     div.dataset.id = card.name; 
-    div.style.background = `url(${card.img})`;
     let front = document.createElement('div');
-    front.classList.add('front')
-    div.append(front)
+    front.classList.add('front');
+    let back = document.createElement('div');
+    back.classList.add('back');
+    back.style.background = `url(${card.img})`;
+
     section.append(div);
+    div.appendChild(front);
+    div.appendChild(back);  
 });
 
-let front = document.querySelectorAll('.front');
 let count = 0;
 let guess1 = '';
 let guess2 = '';
+let previous = null;
 let delay = 1000;
+let moves = 0
 
 function play(event){
+
+    let clicked = event.target.parentNode;
+    if (clicked.nodeName === 'SECTION'|| clicked === previous){
+        return
+      }
+
     if(count < 2){
         count++;
-        
-        let clicked = event.target.parentNode;
-       
-        if (clicked.nodeName === 'SECTION'){
-            return
-          }
+                    
         clicked.classList.add('selected');
         if(count === 1){
              guess1 = clicked.dataset.id;
-             clicked.removeChild(clicked.childNodes[0]);
             clicked.classList.add('selected');
         }
         else{
              guess2 = clicked.dataset.id;
-             clicked.removeChild(clicked.childNodes[0]);
             clicked.classList.add('selected');
         }
         
         if (guess1 !== '' && guess2 !== ''){
             if(guess1 === guess2){
-                setTimeout(match,delay);
-                setTimeout(reset,delay);
-                
-            }           
-            else {                     
-               setTimeout(addFront1,delay)
-               function addFront2(){   
-                let front =  document.createElement('div');
-                front.classList.add('front');  
-                clicked.append(front);               
-                }
-               setTimeout(addFront2,delay)
+                setTimeout(match,delay);                
+            }                                           
                  setTimeout(reset,delay) 
-            }
         }
-    }
+        previous = clicked;
+        moves = moves+1;
+    }   
+    span.innerText = `Total no. of moves: ${moves}`;
 }
 
 function match(){
@@ -109,20 +109,11 @@ function match(){
     })
 }
 
-function addFront1(){
-    let previous = document.querySelector(`[data-id='${guess1}']`);  
-    let front =  document.createElement('div');
-    front.classList.add('front');  
-    previous.append(front);      
-    
-}
-
-
-
 function reset(){
      count = 0;
      guess1 = '';
      guess2 = '';
+     previous = null;
      let selectedCards = document.querySelectorAll('.selected');
      selectedCards.forEach((card) => {
      card.classList.remove('selected')
@@ -131,3 +122,6 @@ function reset(){
 
 game.addEventListener('click',play);
 
+}
+
+main();

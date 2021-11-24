@@ -152,29 +152,45 @@ h1 {
   justify-content: space-evenly;
 }
 
-.card {
+.card,
+.front,
+.back {
   width: 120px;
   height: 130px;
+}
+.card {
   margin: 0.7rem;
   box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: all 0.4s linear;
+  transform-style: preserve-3d;
 }
 
 .front {
-  width: 120px;
-  height: 130px;
-  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.2);
   background: rgb(235, 209, 209);
+  z-index: 2;
 }
-img {
-  height: 130px;
-  width: 120px;
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
 }
-
+.back {
+  transform: rotateY(180deg);
+  background: #6589f9 no-repeat center center contain;
+}
 .selected {
   border: 3px solid red;
+  transform: rotateY(180deg);
 }
 
-.match {
-  border: 3px solid green;
-  background: none;
+.match .front {
+  background: #6589f9 !important;
+}
+
+.moves {
+  text-align: left;
+  display: block;
+  margin-top: 1rem;
+  font-size: 20px;
 }
